@@ -3,7 +3,7 @@
   remote_user: admin
   become: yes
   vars_files:
-  - "./variables.yml"
+  - "var/variables.yml"
 
   tasks:
 #Puedo incluir variables usando el módulo include_vars
@@ -23,7 +23,7 @@
 
   - name: write postfix config file
     template:
-      src: ./postfix-main.j2
+      src: template/postfix-main.j2
       dest: /etc/postfix/main.cf
     notify:
     - restart postfix
@@ -54,7 +54,7 @@
 
   - name: Configure squirrelmail
     template:
-      src: ./squirrelmail.conf.j2
+      src: template/squirrelmail.conf.j2
       dest: /etc/squirrelmail/config.php
       owner: root
       group: root
